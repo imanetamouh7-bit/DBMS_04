@@ -98,7 +98,14 @@ Read the table carefully and describe one concrete example of each:
 3. **Delete anomaly:** What information is permanently lost if order 1002 is
    deleted entirely?
 
-> *Your answers:*
+Update anomaly:
+If Huber changes the hourly rate to 70.00, many rows must be changed.
+
+Insert anomaly:
+A new mechanic cannot be added without an order number and item number.
+
+Delete anomaly:
+If order 1002 is deleted, customer, vehicle, and mechanic information is lost.
 
 ### Task 1b – Write Down Functional Dependencies
 
@@ -111,7 +118,11 @@ Hints:
 - What does a single mechanic ID determine?
 - What only follows from the combination `(OrderNo, ItemNo)`?
 
-> *Your FD list:*
+CustNo -> CustName, CustCity
+Plate -> Make, Model, Year, CustNo
+MechId -> MechName, HourlyRate
+OrderNo -> Date, CustNo, Plate
+OrderNo, ItemNo -> MechId, Description, Hours
 
 ### Questions for Task 1
 
@@ -119,17 +130,20 @@ Hints:
 respect to the primary key `(OrderNo, ItemNo)`? Justify your answer using the
 definition from Lecture 04.
 
-> *Your answer:*
+CustNo : CustCity is not a full dependency. It is a transitive dependency.
 
 **Question 1.2:** Identify a transitive dependency in the flat table and explain
 why it violates 3NF.
 
-> *Your answer:*
+OrderNo : CustNo
+CustNo : CustName, CustCity
+This is a transitive dependency. It breaks 3NF.
 
 **Question 1.3:** Compute the attribute closure $\{\mathrm{OrderNo}\}^+$ using
 your FD list. Is `OrderNo` alone a superkey of the flat table?
 
-> *Your answer:*
+OrderNo+ = {OrderNo, Date, CustNo, Plate, CustName, CustCity, Make, Model, Year}
+OrderNo is not a superkey because some attributes are missing.
 
 ---
 
