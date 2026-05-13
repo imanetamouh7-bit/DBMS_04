@@ -196,8 +196,10 @@ $$R_1 \cap R_2 \rightarrow R_1 \setminus R_2 \quad \text{or} \quad R_1 \cap R_2 
 
 Name the shared attributes, state the FD you rely on, and conclude whether the
 decomposition is lossless.
-
-> *Your verification:*
+I use the split between order and vehicle.
+Shared attribute: plate
+FD: plate -> make, model, year, cust_no
+Plate is the primary key of vehicle. So the decomposition is lossless.
 
 ### Questions for Task 2
 
@@ -206,20 +208,23 @@ though the customer is also reachable via the vehicle's licence plate?
 Describe a realistic scenario where the direct link `order → customer` is
 necessary.
 
-> *Your answer:*
+cust_no must stay in order because an order belongs to a customer.
+Example: A car can be sold to another customer later. The old order must still belong to the old customer.
 
 **Question 2.2:** Is the schema after the 3NF decomposition also in BCNF?
 Justify your answer using the definition: for every non-trivial FD $X \rightarrow Y$,
 $X$ must be a superkey.
 
-> *Your answer:*
+Yes, the schema is also in BCNF.
+In every relation, the left side of each FD is a key.
 
 **Question 2.3:** The hourly rate of a mechanic is stored in `mechanic`. If a
 mechanic changes their rate during the year, what problem arises for already
 completed orders? How could the schema be extended to correctly record
 historical hourly rates?
 
-> *Your answer:*
+If the mechanic changes the hourly rate, old orders get the new rate too. This is wrong.
+A solution is to save the old rate in work_item, for example hourly_rate_at_order.
 
 ---
 
