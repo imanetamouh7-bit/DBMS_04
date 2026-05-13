@@ -568,7 +568,7 @@ order 1003 (BMW 320i, 2026-03-12).
 `work_item`). In what order would the query optimizer ideally perform the joins —
 and why does the join order not affect the *result*, but does affect *performance*?
 
-> *Your answer:*
+The optimizer should first find the customer Berger, Franz. Then it joins the orders and work items. The result is the same, but performance can be different.
 
 ---
 
@@ -597,7 +597,7 @@ least one work item). Sort descending by `total_hours`.
 What would `COUNT(*)` count instead, and why would the result differ in this
 case?
 
-> *Your answer:*
+COUNT(*) counts work items. COUNT(DISTINCT order_no) counts orders. One order can have many work items.
 
 ---
 
@@ -635,7 +635,7 @@ After that, the query should return `BOT-ZZ 1 | Yaris`.
 always produce the same result. Are there situations where one approach should
 be preferred in practice? Consider readability and extensibility.
 
-> *Your answer:*
+NOT EXISTS is often easier to read and extend. EXCEPT is good for simple set difference.
 
 ---
 
