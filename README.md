@@ -509,7 +509,8 @@ git commit -m "feat: DDL and sample data for normalized workshop schema"
 Justify both choices in terms of the domain — what does it mean for the
 business if an order is deleted versus if a customer is deleted?
 
-> *Your answer:*
+ON DELETE CASCADE is correct for work_item. If an order is deleted, its work items should be deleted too.
+ON DELETE RESTRICT is correct for vehicle. A customer should not be deleted if they still have a vehicle.
 
 **Question 4.2:** Test referential integrity by running:
 
@@ -521,7 +522,8 @@ INSERT INTO work_item VALUES (9999, 1, 3, 'Ghost item', 1.0);
 What error do you get? What does this tell you about the difference between
 a constraint declared in DDL and one that is actually enforced at runtime?
 
-> *Your answer:*
+The error is: FOREIGN KEY constraint failed.
+This means the order number 9999 does not exist. The constraint only works when foreign_keys is ON.
 
 **Question 4.3:** Test the CHECK constraint:
 
@@ -531,7 +533,9 @@ INSERT INTO work_item VALUES (1001, 3, 3, 'Invalid', -0.5);
 
 What happens? What would happen if the CHECK constraint were missing?
 
-> *Your answer:*
+The error is: CHECK constraint failed.
+The value -0.5 is not allowed because hours must be greater than 0.
+Without the CHECK constraint, wrong negative hours could be saved.
 
 ---
 
