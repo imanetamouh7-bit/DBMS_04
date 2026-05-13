@@ -655,14 +655,16 @@ The original flat table had 5 rows and 15 columns. The normalized schema has
 5 tables. At which data volume does normalization pay off most — at 5 rows or
 at 50,000? Justify with concrete reference to the anomalies from Task 1a.
 
-> *Your answer:*
+Normalization is more useful with 50,000 rows.
+It reduces duplicate data and avoids update, insert, and delete anomalies.
 
 **Question B – 3NF vs. BCNF:**  
 Lecture 04 explains that BCNF is not always dependency-preserving. Is this
 relevant for the workshop schema? Would a BCNF decomposition have looked
 different from the 3NF decomposition here?
 
-> *Your answer:*
+No, this is not a problem here.
+The schema is already in 3NF and BCNF. The BCNF decomposition would be the same.
 
 **Question C – Redundant foreign key in `order`:**  
 `order` contains both `plate` (FK → `vehicle`) and `cust_no` (FK → `customer`).
@@ -670,7 +672,8 @@ Since `vehicle` itself contains `cust_no`, one might argue that `cust_no`
 in `order` is redundant and violates 3NF. Is that correct? When would such
 a deliberate denormalization be justified?
 
-> *Your answer:*
+cust_no in repair_order looks redundant, but it is useful.
+A car can be sold to another customer later. Old orders should still keep the old customer.
 
 **Question D – NULL and order status:**  
 An order that has just been created may have no work items yet. What does the
@@ -678,7 +681,10 @@ current schema say about this case? Would the schema need to be extended to
 correctly represent an order's status (open / completed)? Sketch the necessary
 change.
 
-> *Your answer:*
+An order can exist without work items.
+To show the order status, the schema can have a new column:
+status TEXT
+Example values: open, completed.
 
 > **Screenshot 4:** Take a screenshot showing the output of Query 5b directly
 > in `sqlite3` (with `.headers on` and `.mode column` activated).
