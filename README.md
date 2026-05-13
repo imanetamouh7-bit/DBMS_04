@@ -689,7 +689,7 @@ Example values: open, completed.
 > **Screenshot 4:** Take a screenshot showing the output of Query 5b directly
 > in `sqlite3` (with `.headers on` and `.mode column` activated).
 >
-> `[insert screenshot]`
+![screenshot 4](screenshot4.png)
 
 ---
 
