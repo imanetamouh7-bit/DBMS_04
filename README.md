@@ -183,7 +183,9 @@ Examine `order` and `vehicle` for transitive dependencies.
 State your conclusion: are all five relations from Task 2a already in 3NF?
 If not, perform the missing decomposition.
 
-> *Your analysis and any further decomposition:*
+In order, cust_no depends on order_no. The customer name is not in order anymore. It is in customer. So this is correct.
+In vehicle, cust_no depends on plate. The car belongs to one customer. So vehicle is already in 3NF.
+Conclusion: All five relations are already in 3NF. No further decomposition is needed.
 
 ### Task 2c – Verify Losslessness
 
