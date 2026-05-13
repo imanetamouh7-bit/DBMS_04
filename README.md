@@ -433,7 +433,7 @@ sqlite3 workshop.db ".tables"
 
 > **Screenshot 3:** Take a screenshot showing the `.tables` output.
 >
-> `[insert screenshot]`
+![screenshot 3](screenshot3.png)
 
 ### Task 4c – Insert Sample Data
 
