@@ -130,13 +130,13 @@ OrderNo, ItemNo -> MechId, Description, Hours
 respect to the primary key `(OrderNo, ItemNo)`? Justify your answer using the
 definition from Lecture 04.
 
-CustNo : CustCity is not a full dependency. It is a transitive dependency.
+CustNo -> CustCity is not a full dependency. It is a transitive dependency.
 
 **Question 1.2:** Identify a transitive dependency in the flat table and explain
 why it violates 3NF.
 
-OrderNo : CustNo
-CustNo : CustName, CustCity
+OrderNo -> CustNo
+CustNo -> CustName, CustCity
 This is a transitive dependency. It breaks 3NF.
 
 **Question 1.3:** Compute the attribute closure $\{\mathrm{OrderNo}\}^+$ using
