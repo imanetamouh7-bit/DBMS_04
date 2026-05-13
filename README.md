@@ -168,7 +168,7 @@ then fill in the table below.
 Check: In every relation, does each non-key attribute depend on the **complete**
 primary key?
 
-> *Your check:*
+Yes. In every relation, all non-key attributes depend on the complete primary key.
 
 ### Task 2b – Decompose into 3NF
 
